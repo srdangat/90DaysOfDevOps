@@ -1,7 +1,7 @@
 # 90-Day DevOps Learning Plan
 
 ## Current Level  
-I am an **early-career IT professional** with a **6-month internship** in cloud support (AWS, Aure, GCP).  
+I am an **early-career IT professional** with a **6-month internship** in cloud support (AWS,Azure,GCP).  
 I have basic cloud exposure and want to build **strong hands-on DevOps skills**.
 
 ## What DevOps & Cloud Mean to Me  
