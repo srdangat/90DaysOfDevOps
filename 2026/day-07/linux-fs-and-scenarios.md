@@ -233,3 +233,87 @@ ls -la ~
 ![hdtask](https://github.com/srdangat/90DaysOfDevOps/blob/master/2026/day-07/screenshot/hdtask.png)
 
 ---
+
+## Part 2: Scenario-Based Practice
+
+**Scenario 1: Service Not Starting** 
+```
+A web application service called 'httpd' failed to start.
+What commands would you run to diagnose the issue?
+Write at least 4 commands in order.
+```
+
+### Step 1: Check service status
+```bash
+sudo systemctl status httpd
+```
+**Why:** Confirms the service failed and shows initial error output.
+
+![d1](https://github.com/srdangat/90DaysOfDevOps/blob/master/2026/day-07/scenario1/d1.png)
+
+---
+
+### Step 2: Check logs
+```bash
+sudo journalctl -u httpd -n 50
+```
+**Why:** To identify errors such as an `invalid or misspelled directive` in the configuration
+
+![d2](https://github.com/srdangat/90DaysOfDevOps/blob/master/2026/day-07/scenario1/d2.png)
+
+---
+
+### Step 3: Test Apache configuration
+```bash
+sudo apachectl configtest
+```
+**Why:** Identifies configuration syntax errors.
+
+![d3](https://github.com/srdangat/90DaysOfDevOps/blob/master/2026/day-07/scenario1/d3.png)
+
+---
+
+### Step 4: Check if service is enabled on boot
+```bash
+sudo systemctl is-enabled httpd
+```
+**Why:** Ensures the service is configured to start automatically after reboot.
+
+![d4](https://github.com/srdangat/90DaysOfDevOps/blob/master/2026/day-07/scenario1/d4.png)
+
+---
+
+## Step 4: Fix the Issue
+
+Edit the config file and remove the invalid line:
+
+```bash
+sudo vi /etc/httpd/conf/httpd.conf
+```
+
+**Invalid directive removed**
+
+![d5](https://github.com/srdangat/90DaysOfDevOps/blob/master/2026/day-07/scenario1/d5.png)
+
+
+Test configuration again:
+
+```bash
+sudo apachectl configtest
+```
+![d5](https://github.com/srdangat/90DaysOfDevOps/blob/master/2026/day-07/scenario1/d5.png)
+
+Restart service:
+
+```bash
+sudo systemctl restart httpd
+sudo systemctl status httpd
+```
+![d5](https://github.com/srdangat/90DaysOfDevOps/blob/master/2026/day-07/scenario1/d5.png)
+
+Verify:
+
+```bash
+curl http://localhost
+```
+![d5](https://github.com/srdangat/90DaysOfDevOps/blob/master/2026/day-07/scenario1/d5.png)
