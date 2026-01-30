@@ -342,4 +342,33 @@ kill 2633
 
 ---
 
+**Scenario 3: Finding Service Logs** 
+```
+A developer asks: "Where are the logs for the 'docker' service?"
+The service is managed by systemd.
+What commands would you use?
+```
+
+### Step 1: To confirm service status and see log hints.
+
+```bash
+sudo systemctl status docker
+```
+![d_status](https://github.com/srdangat/90DaysOfDevOps/blob/master/2026/day-07/scenario3/d-status.png)
+
+### Step 2: To view recent Docker service logs.
+
+```bash
+sudo journalctl -n docker -u 50
+```
+![d_service_logs](https://github.com/srdangat/90DaysOfDevOps/blob/master/2026/day-07/scenario3/docker_service%20logs.png)
+
+### Step 3: To follow logs in real-time.
+
+```bash
+sudo journalctl -u docker -f
+```
+![d_real_time_logs](https://github.com/srdangat/90DaysOfDevOps/blob/master/2026/day-07/scenario3/docker_real-time.png)
+
+---
 
