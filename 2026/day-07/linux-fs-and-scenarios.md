@@ -317,3 +317,29 @@ Verify:
 curl http://localhost
 ```
 ![d5](https://github.com/srdangat/90DaysOfDevOps/blob/master/2026/day-07/scenario1/d5.png)
+
+---
+
+**Scenario 2: High CPU Usage** 
+```
+Your manager reports that the application server is slow.
+You SSH into the server. What commands would you run to identify
+which process is using high CPU?
+```
+### Step 1: To view high usages resource in system
+
+```bash
+htop
+```
+![htop](https://github.com/srdangat/90DaysOfDevOps/blob/master/2026/day-07/scenario2/htop.png)
+
+### Step 2: kill the process
+
+```bash
+kill 2633
+```
+![kill](https://github.com/srdangat/90DaysOfDevOps/blob/master/2026/day-07/scenario2/kill_2366.png)
+
+---
+
+
