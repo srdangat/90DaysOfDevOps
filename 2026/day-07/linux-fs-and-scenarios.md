@@ -372,3 +372,31 @@ sudo journalctl -u docker -f
 
 ---
 
+**Scenario 4: File Permissions Issue** 
+```
+A script at /home/bob/backup.sh is not executing.
+When you run it: ./backup.sh
+You get: "Permission denied"
+
+What commands would you use to fix this?
+```
+
+**Step-by-step solution structure:**
+```
+Step 1: Check current permissions
+Command: ls -l backup.sh
+Look for: -rw-r--r-- (notice no 'x' = not executable)
+
+Step 2: Add execute permission
+Command: sudo chmod +x backup.sh
+
+Step 3: Verify it worked
+Command: ls -l backup.sh
+Look for: -rwxr-xr-x (notice 'x' = executable)
+
+Step 4: Try running it
+Command: ./backup.sh
+```
+![script](https://github.com/srdangat/90DaysOfDevOps/blob/master/2026/day-07/scenario4/script_prm.png)
+
+----
