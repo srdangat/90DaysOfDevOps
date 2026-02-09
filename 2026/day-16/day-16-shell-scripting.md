@@ -65,3 +65,25 @@
 ![file_check](https://github.com/srdangat/90DaysOfDevOps/blob/master/2026/day-16/images/file_check.png)
 
 ---
+
+## Task 5: Combine It All
+Create `server_check.sh` that:
+1. Stores a service name in a variable (e.g., `nginx`, `sshd`)
+2. Asks the user: "Do you want to check the status? (y/n)"
+3. If `y` — runs `systemctl status <service>` and prints whether it's **active** or **not**
+4. If `n` — prints "Skipped."
+
+[Script](scripts/check_server.sh)
+
+![server_check](images/server_check.png)
+
+
+## What I learned -
+
+
+* How to write and execute Bash shell scripts using the shebang (`#!/bin/bash`),variables,and user input with `read`.
+* How variable assignment works in Bash,including accessing variables with `$` and understanding single vs double quotes.
+* How to control script flow using conditional statements (`if`, `elif`, `else`) and test operators (`-f`, `-gt`, `-lt`).
+* How to check file existence and numeric conditions inside shell scripts.
+* How to suppress command output and errors using redirection (`> /dev/null `).
+* How to use `systemctl is-active` to programmatically check whether a service is running instead of relying on verbose status output.
