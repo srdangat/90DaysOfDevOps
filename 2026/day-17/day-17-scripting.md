@@ -25,7 +25,7 @@
 
    [Script](scripts/countdown.sh)
    
-   ![countdown](images/countdown.png)
+   ![countdown](images/coutdown.png)
    
 ---
 
@@ -37,7 +37,7 @@
    
    [Script](scripts/greet.sh)
    
-   ![greet](images/greet.png)
+   ![greet](images/greet.sh.png)
 
 2. Create `args_demo.sh` that:
    - Prints total number of arguments (`$#`)
@@ -84,3 +84,18 @@
    ![snapshot](images/modify_installpkg.png)
 
 ---
+
+
+## What I Learned
+
+* Used for loops to iterate over lists and number ranges
+* Used while loops for countdown logic with user input
+* Handled command-line arguments using $1, $#, $@, $0
+* Added usage messages for missing arguments
+* Took user input using read
+* Automated package installation (nginx, curl, wget)
+* Checked package status using dpkg -s
+* Added root user validation using $EUID
+* Implemented error handling with set -e and ||
+* Created safe scripts to avoid failures and overwrites
+* Issue Faced & Lesson Learned: Used commas in a Bash array, causing the loop to fail, Learned that Bash arrays must be space-separated, not comma-separated
