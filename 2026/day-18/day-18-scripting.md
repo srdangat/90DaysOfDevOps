@@ -37,8 +37,9 @@
 
    [Script](scripts/strict_demo.sh)
    
-   ![task3](images/task3withoutstrictmode)
-   ![task3](images/task3withstrictmode)
+   ![task3](images/tak3withoutstrictmode.png)
+   
+   ![task3](images/task3withstrictmode.png)
    
 ---
 
@@ -50,7 +51,7 @@
    
    [Script](scripts/local_demo.sh)
    
-   ![task4](images/local_demo.png)
+   ![task4](images/task4.png)
 
 ---
 
