@@ -67,7 +67,7 @@ Create `maintenance.sh` that:
 
 * Validation: Used if [ ! -d "$DIR" ] to prevent scripts from running on missing paths.
 
-* Arguments: Mastered $1, $2, and $# to create dynamic,reusable scripts.
+* Arguments: Mastered $1, $2, $# to create dynamic,reusable scripts.
 
 * Advanced File Handling: find command: Combined -mtime, -exec, and -delete for automated file cleanup.
 
