@@ -33,7 +33,7 @@ Your script should:
 
    [Script](scripts/error_count.sh)
    
-   ![images](images/crict.png.png)
+   ![images](images/crict.png)
 
 ---
 
