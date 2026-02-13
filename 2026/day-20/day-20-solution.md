@@ -67,7 +67,7 @@ Add a feature to:
 
    [Script](scripts/log_analyzer_report.sh)
    
-   ![images](images/Screenshot 2026-02-13 201659.png)
+   ![images](images/analyzer.png)
 
 
 ---
