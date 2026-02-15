@@ -1,3 +1,42 @@
+| Topic           | Key Syntax              | Example                                       |
+| --------------- | ----------------------- | --------------------------------------------- |
+| Make Executable | `chmod +x file.sh`      | `chmod +x script.sh`                          |
+| Run Script      | `./file.sh`             | `./script.sh`                                 |
+| Comment         | `# comment`             | `echo "Hi" # inline comment`                  |
+| Variable        | `VAR="value"`           | `NAME="DevOps"`                               |
+| Use Variable    | `$VAR`                  | `echo $NAME`                                  |
+| Read Input      | `read VAR`              | `read USER`                                   |
+| Arguments       | `$1 $2 $# $@ $?`        | `./script.sh arg1`                            |
+| String Compare  | `[ "$a" = "$b" ]`       | `[ "$name" = "Linux" ]`                       |
+| Integer Compare | `[ $a -gt 10 ]`         | `[ $num -eq 5 ]`                              |
+| File Test       | `[ -f file ]`           | `[ -d /home ]`                                |
+| If Condition    | `if [ cond ]; then`     | `if [ -f file ]; then echo OK; fi`            |
+| Case Statement  | `case $v in ... esac`   | `case $1 in start) echo run ;; esac`          |
+|  AND            | `cmd1 && cmd2`          | `mkdir test && cd test`                       |
+|   OR            | `cmd1 \|\| cmd2`        | `cd dir \|\| pwd`                             |
+| For Loop        | `for i in list; do`     | `for i in 1 2 3; do echo $i; done`            |
+| C-Style For     | `for ((i=1;i<=3;i++))`  | `for ((i=1;i<=3;i++)); do touch f$i; done`    |
+| While Loop      | `while [ cond ]; do`    | `while [ $a -lt 5 ]; do echo $a; done`        |
+| Until Loop      | `until [ cond ]; do`    | `until ping -c1 google.com; do sleep 2; done` |
+| Break           | `break`                 | `if [ $i -eq 5 ]; then break; fi`             |
+| Continue        | `continue`              | `if [ $i -eq 2 ]; then continue; fi`          |
+| Function        | `name() { ... }`        | `greet(){ echo "Hi"; }`                       |
+| Function Arg    | `$1 inside function`    | `add(){ echo $(($1+$2)); }`                   |
+| Return Status   | `return 0`              | `return 1`                                    |
+| Capture Output  | `result=$(func)`        | `val=$(date)`                                 |
+| Local Variable  | `local var=value`       | `local count=10`                              |
+| grep            | `grep pattern file`     | `grep -i "error" log.txt`                     |
+| awk             | `awk '{print $1}' file` | `awk -F: '{print $1}' /etc/passwd`            |
+| sed             | `sed 's/a/b/g' file`    | `sed -i 's/foo/bar/g' file.txt`               |
+| cut             | `cut -d: -f1 file`      | `cut -d: -f1 /etc/passwd`                     |
+| sort            | `sort file`             | `sort -n numbers.txt`                         |
+| uniq            | `sort file \| uniq`     | `sort file \| uniq -c`                        |
+| tr              | `tr 'a-z' 'A-Z'`        | `echo hi \| tr 'a-z' 'A-Z'`                   |
+| wc              | `wc -l file`            | `wc -w file.txt`                              |
+| head            | `head -n 5 file`        | `head -n 10 log.txt`                          |
+| tail            | `tail -f file`          | `tail -f app.log`                             |
+
+
 # Task 1: Basics
 
 ## 1.Shebang(#!/bin/bash)
@@ -494,3 +533,253 @@
 
     echo $total   # empty, because 'total' is local
     ```
+
+# Task 5: Text Processing Commands
+
+ ## 1.grep: Search for text patterns in files or input
+- **Syntax**:
+    ```bash
+    grep [options] "pattern" file
+    ```
+- **-i**: ignore case.(Search without caring if letters are uppercase or lowercase.)
+- **-r**: recursive search in directories.
+- **-c**: count matching lines.
+- **-n**: show line numbers.
+- **-v**: lines that don’t match.
+- **-E**: extended regex
+
+- **Example**:
+    ```bash
+    grep -i "error" /var/log/syslog 
+    Matches error, Error, ERROR
+
+    grep -r "TODO" /home/user/sanket
+    Search for “TODO” in all files under a project folder
+
+    grep -c "failed login" /var/log/auth.log
+    Count how many times “failed login” appears in auth logs
+
+    grep -n "sshd" /etc/ssh/sshd_config
+    Find “sshd” in SSH config and show line numbers
+
+    grep -v "INFO" /var/log/syslog
+    Returns everything except lines containing INFO.
+
+    grep -E "error|fail" /var/log/syslog
+    Search for lines containing either “error” or “fail”
+
+    ```
+
+## 2.awk: 
+- Process and extract text from files or input,especially by columns/fields.
+- **Syntax**:
+    ```bash
+    awk 'pattern { action }' file
+    ```
+- **Example**:
+    ```bash
+    print columns: Extract and display specific columns from text.
+    awk '{print $1, $2}' file
+    awk '{print $1}' /etc/passwd
+    ```
+    ```bash
+    field separator: Specify a custom delimiter instead of default spaces/tabs.
+    awk -F":" '{print $1, $3}' file
+    awk -F":" '{print $1, $3}' /etc/passwd
+    ```
+    ```bash
+    patterns: Perform actions only on lines matching a pattern.
+    awk '/pattern/ { action }' file
+    awk '/root/ {print $1}' /etc/passwd
+    ```
+    ```bash
+    BEGIN/END: Execute actions before or after processing the file
+    awk 'BEGIN { ... } { ... } END { ... }' file
+    awk 'BEGIN {print "Users list:"} {print $1} END {print "Done"}' /etc/passwd
+    ```
+
+## 3.sed:
+- To edit or transform text streams like replacing,deleting, or modifying lines.
+- **Syntax**:
+    ```bash
+    sed [options] 'command' file
+    ```
+- **Example**:
+    ```bash
+    substitution: Substitute first match in a line
+    sed 's/pattern/replacement/' file
+    sed 's/error/ERROR/' file.txt
+    ```
+    ```bash    
+    delete lines: Delete line 2.
+    sed 'Nd' file
+    sed '2d' file.txt
+    ```
+
+    ```bash
+    In-place edit: Modify the file directly instead of just printing output.
+    sed -i 's/pattern/replacement/g' file
+    sed -i 's/error/ERROR/g' file.txt
+    ```
+
+## 4.cut:
+- Extract specific columns or fields from text using a delimiter.
+- **Syntax**:
+    ```bash
+    cut -d "delimiter" -f N file
+    -d: specify the field delimiter
+    -f specify the field/column number(s) to extract.
+    ```
+
+- **Example**:
+    ```bash
+    Extract first column (username) from /etc/passwd
+    cut -d ":" -f1 /etc/passwd
+    ```
+
+## 5.sort:
+- Arrange lines in a file alphabetically,numerically,reverse,or remove duplicates
+- **Syntax**:
+    ```bash
+    sort [options] file
+    -n: numeric sort
+    -r: reverse order
+    -u: remove duplicates (unique)
+    ```
+
+- **Example**:
+    ```bash
+    Alphabetical sort (default): sort file.txt
+    Numeric sort: sort -n numbers.txt
+    Reverse order: sort -r file.txt
+    Unique lines only: sort -u file.txt
+    ```
+## 6.uniq:
+- Removes consecutive duplicate lines,also count occurrences. 
+- **Syntax**:
+    ```bash
+    uniq [options] [input_file]
+    ```
+
+- **Example**
+    ```bash
+    # uniq works correctly for all duplicates only if input is sorted.
+    sort file.txt | uniq          # remove all duplicates
+    sort file.txt | uniq -c       # count occurrences
+    uniq -u file.txt              # show only unique lines
+    ```
+
+## 7.tr:
+- Translates/deletes characters from input.
+- **Syntax**:
+    ```bash
+        tr [options] SET1 [SET2]
+    ```
+- **Example**:
+    ```bash
+        echo "hello"     | tr 'a-z' 'A-Z'   # convert to uppercase
+        echo "hello 123" | tr -d '0-9'  # delete digits
+    ```
+
+## 8.wc:
+- Provides counts for lines,words, or characters in a file
+- **Syntax**
+    ```bash
+        wc [options] [file]
+    ```
+
+- **Example**
+    ```bash
+        wc -l file.txt    # line count
+        wc -w file.txt    # word count
+        wc -c file.txt    # character count
+    ```
+
+## 9.head/tail:
+- Display the first or last N lines of a file; tail -f follows live updates.
+- **Syntax**:
+    ```bash
+        head/tail [options] filename
+    ```
+
+- **Example**:
+    ```bash
+        head -n 5 file.txt                  # first 5 lines
+        tail -n 5 file.txt                  # last 5 lines
+        tail -f /var/log/nginx/access.log   # live updates
+    ```
+
+# Task 6 Useful Patterns and One-Liners
+
+- ### Find and delete files older than N days
+    ```bash
+    find /var/log -type f -name "*.log" -mtime +15 -exec rm -f {} \;
+    ```
+- ### Count lines in all .log files
+    ```bash
+    wc -l /var/log/*.log
+    ```
+- ### Replace a string across multiple files
+    ```bash
+    sed -i 's/db.oldserver.com/db.newserver.com/g' /etc/myapp/conf.d/*.conf
+    ```
+- ### Check if a service is running
+    ```bash
+    systemctl is-active --quiet nginx && echo "Running" || echo "Stopped"
+    ```
+
+- ### Monitor disk usage with alerts
+    ```bash
+    df -h | awk '$5+0 > 80 {print $0}' | mail -s "Disk Usage Alert on $(hostname)" your.email@example.com
+    ```
+
+- ### Tail a log and filter for errors in real time
+    ```bash
+    tail -f /var/log/syslog | grep -E 'ERROR|CRITICAL'
+    ```
+
+# Task 7: Error Handling and Debugging
+
+###  Exit codes
+- **$?**: Stores a exit status of a command,script or function
+- **exit 1**: Non-zero indicates failure or a specific error condition.
+- **exit 0**: Success
+
+- **Example**:
+    ```bash
+    #!/bin/bash
+
+    ls myfile.txt
+
+    echo "Exit status of ls command: $?"
+
+    if [ -f myfile.txt ]; then
+        echo "File exists"
+        exit 0
+    else
+        echo "File does not exist"
+        exit 1
+    fi
+    ```
+
+    | Command              | Meaning                               |
+    | -------------------- | ------------------------------------- |
+    | `ls myfile.txt`      | Tries to list the file                |
+    | `$?`                 | Shows exit status of the last command |
+    | `0`                  | Success (file exists)                 |
+    | Non-zero (e.g., `2`) | Error (file does not exist)           |
+    | `exit 0`             | Script ends successfully              |
+    | `exit 1`             | Script ends with failure              |
+
+
+### set -e,set -u ,set -o pipefail ,set -x ,trap 'cleanup' EXIT
+
+| Command               | Meaning                                   | Example                                                                        |
+| --------------------- | ----------------------------------------- | ------------------------------------------------------------------------------ |
+| `set -e`              | Exit immediately if a command fails       | `set -e`<br>`false` → script stops immediately                                 |
+| `set -u`              | Error if using an unset variable          | `set -u`<br>`echo $name` → error if `name` is not set                          |
+| `set -o pipefail`     | Fail if any command in a pipeline fails   | `set -o pipefail`<br>`false \| true` → returns failure                         |
+| `set -x`              | Debug mode (show commands before running) | `set -x`<br>`echo "Hello"` → prints `+ echo Hello`                             |
+| `trap 'cleanup' EXIT` | Run `cleanup` function when script exits  | `trap 'cleanup' EXIT`<br>`cleanup() { echo "Cleaning up..."; }` → runs on exit |
+
+
