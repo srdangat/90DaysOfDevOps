@@ -55,12 +55,12 @@
 
 7. Switch back to `main` — verify that the commit from `feature-1` is not there
 
-     ![images](/images/7.png)
+     ![images](images/7.png)
 
 8. Delete a branch you no longer need
 - `git branch -d feature-2`
 
-    ![images](/images/8.png)
+    ![images](images/8.png)
 
 9. Add all branching commands to your `git-commands.md`
 
@@ -69,21 +69,21 @@
 ### Task 3: Push to GitHub
 1. Create a **new repository** on GitHub (do NOT initialize it with a README)
 
-    ![images](/images/repo_create.png)    
+    ![images](images/repo_create.png)    
 
 2. Connect your local `devops-git-practice` repo to the GitHub remote
 3. Push your `main` branch to GitHub
 
-    ![images](/images/pushmain.png)
+    ![images](images/pushmain.png)
 
 4. Push `feature-1` branch to GitHub
 
-    ![images](/images/pushft1.png)
+    ![images](images/pushft1.png)
 
 
 5. Verify both branches are visible on GitHub
 
-    ![images](/images/branchverify.png)
+    ![images](images/branchverify.png)
 
 6. What is the difference between `origin` and `upstream`?
 - `origin`: origin is the default name for the repo you cloned,points to your own GitHub repository where you push and pull changes.
@@ -97,11 +97,11 @@
 
 1. Make a change to a file **directly on GitHub** (use the GitHub editor)
 
-    ![images](/images/changesgithub.png)
+    ![images](images/changesgithub.png)
 
 2. Pull that change to your local repo
 
-    ![images](/images/pullft1.png)
+    ![images](images/pullft1.png)
 
 3. What is the difference between `git fetch` and `git pull`?
 - `git fetch`: Downloads changes from remote only; does not change your branch,just updates remote info.
