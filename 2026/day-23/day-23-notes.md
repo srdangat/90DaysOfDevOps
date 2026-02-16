@@ -106,3 +106,45 @@
 3. What is the difference between `git fetch` and `git pull`?
 - `git fetch`: Downloads changes from remote only; does not change your branch,just updates remote info.
 - `git pull` : Downloads changes from remote and merges them into your current branch, updating your local branch immediately.
+
+
+### Task 5: Clone vs Fork
+1. **Clone** any public repository from GitHub to your local machine
+
+    ![clone](images/clone.png)
+
+
+2. **Fork** the same repository on GitHub, then clone your fork
+
+    ![fork](images/fork.png)
+    
+3. 1. What is the difference between clone and fork?
+
+        - `clone` : Download the project from GitHub to my computer.
+        - `fork` : Make my own copy of someone else’s project on GitHub.
+   
+   2. When would you clone vs fork?
+   
+        - `clone when`:
+             - You are working on your own project.
+             - You already have write access.
+             - You just want the code locally.
+             - Example: Working in your company repo where you’re a team member.
+        - `fork when`
+             - You don’t have write access.
+             - You want to contribute to open source.
+             - You want your own safe copy.
+             - Example: Contributing to aws-containers repository retail-store-sample-app
+             
+   3. After forking, how do you keep your fork in sync with the original repo?
+   
+      - After forking and cloning my fork, I add the original repository as an upstream remote.Then I fetch changes from upstream, merge the upstream default branch into my current branch,and push the updates to my fork.
+      - Example:
+        ```bash
+        git remote add upstream git@github.com:aws-containers/retail-store-sample-app.git
+        git checkout main
+        git fetch upstream
+        git merge upstream/main
+        git push origin main
+        ```
+---
