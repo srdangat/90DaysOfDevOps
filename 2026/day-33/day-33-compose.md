@@ -17,7 +17,7 @@
 4. Access it in your browser
 5. Stop it with `docker compose down`
 
-    [Dockerfile](compose-basis/Dockerfile)
+    [Dockerfile](compose-basics/Dockerfile)
 
     [Compose file](compose-basics/docker-compose.yml)
     
@@ -109,7 +109,7 @@ Practice and document these:
 
     ![image](images/task5.png)
 
-    [Compose file](wordpress-mysql-env/docker-compose.yml)
+    [Compose file](worpress-mysql-env/docker-compose.yml)
 
-    [Env](wordpress-mysql-env/.env)
+    [Env](worpress-mysql-env/.env)
         
