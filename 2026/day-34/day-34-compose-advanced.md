@@ -8,7 +8,7 @@ Create a `docker-compose.yml` for a 3-service stack:
 - A **database** (Postgres or MySQL)
 - A **cache** (Redis)
 
-    [Code](web_db_cache/app/)
+    [Code](web_db_cache/)
 
 
 
@@ -87,7 +87,7 @@ Create a `docker-compose.yml` for a 3-service stack:
 2. Define **named volumes** for database data
 3. Add **labels** to your services for better organization
 
-  [Compose](/web_db_cache/docker-compose.yml)
+  [Compose](web_db_cache/docker-compose.yml)
 
 
 ---
@@ -112,4 +112,5 @@ Create a `docker-compose.yml` for a 3-service stack:
     - Status Created means Docker couldn’t start them,port 3000 is already in use on the host.
 
     - Docker can’t bind multiple containers to the same host port.
+
 ---
