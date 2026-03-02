@@ -1,0 +1,16 @@
+# Key-Value Pairs
+name: Sanket Dangat
+role: Cloud & Devops Engineer
+experience_years: 1.5
+learning: true
+
+# Lists Using - (dash)
+tools:
+  - Docker
+  - Jenkins
+  - K8s
+  - Terraform
+  - Anisble
+
+# Lists Using square brackets [ ] Inline format
+hobbies: ["Trekking", "Playing Cricket"]
