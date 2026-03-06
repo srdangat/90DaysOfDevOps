@@ -5,7 +5,7 @@ on:
 
 jobs:
   self-hosted:
-    runs-on: [self-hosted, ec2-runner]
+    runs-on:  ec2-runner
 
     steps:
       - name: Checkout Repo
@@ -18,4 +18,5 @@ jobs:
         run: pwd
 
       - name: Create a File
+
         run: echo "Welcome to self hosted runner" > self-hosted.txt
