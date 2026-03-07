@@ -15,7 +15,7 @@ jobs:
         with:
          python-version: 3.12
 
-      - name: Install pkgs
+      - name: Install dependencies
         run: pip install -r requirements.txt
 
       - name: run linter
@@ -40,4 +40,5 @@ jobs:
             echo "This is a push to the MAIN branch"
           else
             echo "This is a push to a FEATURE branch"
+
           fi
