@@ -1,0 +1,23 @@
+name: Greeting Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  greet-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Run Composite Action
+        id: greet
+        uses: ./.github/actions/setup-and-greet
+        with:
+          name: Sanket
+          language: es
+
+      - name: Verify Output
+        run: |
+          echo "Greeting executed: ${{ steps.greet.outputs.greeted }}"
