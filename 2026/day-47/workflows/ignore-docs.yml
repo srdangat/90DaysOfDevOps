@@ -1,0 +1,21 @@
+name: Ignore Docs Workflow
+
+on:
+  push:
+    branches:
+      - main
+      - 'release/*'
+    paths-ignore:
+      - '*.md'
+      - 'docs/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run workflow task
+        run: echo "Workflow ran because change was not docs-only"

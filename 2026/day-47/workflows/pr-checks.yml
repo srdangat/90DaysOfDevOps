@@ -1,0 +1,47 @@
+name: PR Validation Workflow
+on:
+  pull_request:
+    branches:
+      - main
+jobs:
+  file-size-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Fail if any file >1 MB
+        run: |
+          LARGE=$(find . -type f -size +1M)
+          if [ -n "$LARGE" ]; then
+            echo "::error::The following files exceed 1 MB:"
+            echo "$LARGE"
+            exit 1
+          fi
+  branch-name-check:
+    runs-on: ubuntu-latest
+    steps:
+     - name: Validate Branch Name
+       shell: bash
+       run: |
+        BRANCH="${{ github.head_ref }}"
+        case "$BRANCH" in
+          feature/*|fix/*|docs/*)
+            echo "Branch name '$BRANCH' is valid."
+            ;;
+          *)
+            echo "::error::Branch name '$BRANCH' is invalid. Must start with feature/, fix/, or docs/"
+            exit 1
+            ;;
+        esac
+  pr-body-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Warn if PR description is empty
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          if [[ -z "${PR_BODY//[[:space:]]/}" ]]; then
+            echo "::warning::PR description is empty"
+          fi
